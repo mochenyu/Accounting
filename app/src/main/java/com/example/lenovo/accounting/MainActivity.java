@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         //打开列表窗口
         if (item.getItemId()==R.id.item1){
-            Intent accout1 = new Intent(this,AccountListActivity.class);
+            Intent accout1 = new Intent(this,Account1Activity.class);
             startActivity(accout1);
         }else if (item.getItemId()==R.id.item2){
 
