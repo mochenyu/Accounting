@@ -1,35 +1,25 @@
 package com.example.lenovo.accounting;
 
-import java.util.HashMap;
-
-public class AccountExItem {
+public class AccountInItem {
     private int id;
     private String curMark;
-    private String curEx;
+    private String curIn;
     private String curDate;
 
-    public AccountExItem() {
+    public AccountInItem() {
         this.curMark = "";
-        this.curEx = "";
+        this.curIn = "";
         this.curDate = "";
     }
 
-    public AccountExItem(String curMark, String curEx, String curDate) {
+    public AccountInItem(String curMark, String curIn, String curDate) {
         this.curMark = curMark;
-        this.curEx = curEx;
+        this.curIn =curIn;
         this.curDate = curDate;
     }
 
     public int getId() {
         return id;
-    }
-
-    public String getCurDate() {
-        return curDate;
-    }
-
-    public void setCurDate(String curDate) {
-        this.curDate = curDate;
     }
 
     public void setId(int id) {
@@ -44,11 +34,19 @@ public class AccountExItem {
         this.curMark = curMark;
     }
 
-    public String getCurEx() {
-        return curEx;
+    public String getCurIn() {
+        return curIn;
     }
 
-    public void setCurEx(String curEx) {
-        this.curEx = curEx;
+    public void setCurIn(String curIn) {
+        this.curIn = curIn;
+    }
+
+    public String getCurDate() {
+        return curDate;
+    }
+
+    public void setCurDate(String curDate) {
+        this.curDate = curDate;
     }
 }

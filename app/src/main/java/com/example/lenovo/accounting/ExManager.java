@@ -4,8 +4,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.view.View;
 
+import java.util.AbstractList;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class ExManager {
@@ -23,20 +26,13 @@ public class ExManager {
         ContentValues values = new ContentValues();
         values.put("CurMark",item.getCurMark());
         values.put("CurEx",item.getCurEx());
+        values.put("CurDate",item.getCurDate());
         db.insert(TBNAME,null,values);
         db.close();
     }
 
-    //添加所有数据
-    public void addAll(List<AccountExItem> list){
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        for (AccountExItem item : list){
-            ContentValues values = new ContentValues();
-            values.put("CurMark",item.getCurMark());
-            values.put("CurEx",item.getCurEx());
-            db.insert(TBNAME,null,values);
-        }
-        db.close();
+    public void add2(HashMap<String,String> map){
+
     }
 
     //删除一条数据
@@ -46,13 +42,16 @@ public class ExManager {
         db.close();
     }
 
-    //更新数据
-    public void update(AccountExItem item){
+    //添加所有数据
+    public void addAll(List<AccountExItem> list){
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put("CurMark",item.getCurMark());
-        values.put("CurEx",item.getCurEx());
-        db.update(TBNAME,values,"ID=?",new String[]{String.valueOf(item.getId())});
+        for (AccountExItem item : list){
+            ContentValues values = new ContentValues();
+            values.put("curMark",item.getCurMark());
+            values.put("curEx",item.getCurEx());
+            values.put("curDate",item.getCurDate());
+            db.insert(TBNAME,null,values);
+        }
         db.close();
     }
 
@@ -63,38 +62,73 @@ public class ExManager {
         db.close();
     }
 
-    //查询数据
-    public AccountExItem findById(int id){
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.query(TBNAME,null,"ID=?",new String[]{String.valueOf(id)},null,null,null);
-        AccountExItem ExItem = null;
-        if (cursor!=null && cursor.moveToFirst()){
-            ExItem = new AccountExItem();
-            ExItem.setId(cursor.getInt(cursor.getColumnIndex("ID")));
-            ExItem.setCurMark(cursor.getString(cursor.getColumnIndex("CURMARK")));
-            ExItem.setCurEx(cursor.getString(cursor.getColumnIndex("CUREX")));
-            cursor.close();//关闭光标
-        }
-        db.close();
-        return  ExItem;
-    }
-
     public List<AccountExItem> listAll(){
-        List<AccountExItem> ExList = null;
+        List<AccountExItem> rateList = null;
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.query(TBNAME,null,null,null,null,null,null);
         if (cursor!=null){
-            ExList = new ArrayList<AccountExItem>();
+            rateList = new ArrayList<AccountExItem>();
             while (cursor.moveToNext()){
                 AccountExItem item = new AccountExItem();
                 item.setId(cursor.getInt(cursor.getColumnIndex("ID")));
                 item.setCurMark(cursor.getString(cursor.getColumnIndex("CURMARK")));
                 item.setCurEx(cursor.getString(cursor.getColumnIndex("CUREX")));
-                ExList.add(item);
+                item.setCurDate(cursor.getString(cursor.getColumnIndex("CURDATE")));
+                rateList.add(item);
             }
             cursor.close();
         }
         db.close();
-        return ExList;
+        return rateList;
     }
+
+    public Float NUM() {
+        Float r = 0.0f;
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.query(TBNAME, null, null, null, null, null, null);
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                AccountExItem item = new AccountExItem();
+                r = r + Float.parseFloat(cursor.getString(cursor.getColumnIndex("CUREX")));
+            }
+            cursor.close();
+        }
+        db.close();
+        return r;
+    }
+
+    public HashMap<String, String> getData() {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.query(TBNAME, null, null, null, null, null, null);
+        HashMap<String, String> map = null;
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                map = new HashMap<String, String>();
+                map.put("ItemMarks", cursor.getString(cursor.getColumnIndex("CURMARK")));
+                map.put("ItemEx", cursor.getString(cursor.getColumnIndex("CUREX")));
+                map.put("ItemDate", cursor.getString(cursor.getColumnIndex("CURDATE")));
+            }
+            cursor.close();
+        }
+        db.close();
+        return map;
+    }
+    /*public List<HashMap<String, String>> getData(){
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.query(TBNAME, null, null, null, null, null, null);
+        List<HashMap<String,String>> listitems = null;
+        if (cursor != null) {
+            listitems = new ArrayList<HashMap<String, String>>();
+            while (cursor.moveToNext()) {
+                HashMap<String, String> map = new HashMap<String, String>();
+                map.put("ItemMarks", cursor.getString(cursor.getColumnIndex("CURMARK")));
+                map.put("ItemEx", cursor.getString(cursor.getColumnIndex("CUREX")));
+                map.put("ItemDate", cursor.getString(cursor.getColumnIndex("CURDATE")));
+                listitems.add(map);
+            }
+            cursor.close();
+        }
+        db.close();
+        return listitems;
+    }*/
 }
