@@ -6,14 +6,20 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorButtonNormal">@color/colorButton</item>
     </style>
 
     <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
         <item name="tabIndicatorColor">?attr/colorPrimary</item>
         <item name="tabIndicatorHeight">2dp</item>
-        <item name="tabPaddingStart">12dp</item>
-        <item name="tabPaddingEnd">12dp</item>
-        <item name="android:selectableItemBackground">?attr/selectableItemBackground</item>
+        <item name="tabPaddingStart">8dp</item>
+        <item name="tabPaddingEnd">8dp</item>
+        <item name="android:selectableItemBackground">@color/selectableItemBackground</item>
+    </style>
+
+    <style name="TabLayoutTextStyle">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
 </resources>

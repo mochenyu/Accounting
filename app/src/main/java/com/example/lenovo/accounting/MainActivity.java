@@ -32,15 +32,7 @@ public class MainActivity extends AppCompatActivity {
         mark1 = findViewById(R.id.mark2);
     }
 
-    public void onClick(View btn) {
-
-    }
-
     public void openOne(View btn) {
-        //打开计算器
-        Intent mIntent = new Intent();
-        mIntent.setClassName("com.android.calculator2", "com.android.calculator2.Calculator");
-        startActivity(mIntent);
     }
 
     @Override

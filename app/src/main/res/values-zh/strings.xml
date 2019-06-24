@@ -6,4 +6,7 @@
     <string name="btn1">完成</string>
     <string name="menu_expenses">支出明细</string>
     <string name="menu_income">收入明细</string>
+    <string name="cal">计算器</string>
+    <string name="total">总计：¥</string>
+    <string name="totalnum">0.00</string>
 </resources>

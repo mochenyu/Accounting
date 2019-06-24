@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorList"
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".Account1Activity">
@@ -14,31 +15,31 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/itemMarks2"
+            android:id="@+id/itemMarks"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="left"
             android:text="remarks"
-            android:textSize="18sp" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/itemIn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="right"
+            android:gravity="center"
             android:text="number"
-            android:textSize="18sp" />
+            android:textSize="24sp" />
 
     </LinearLayout>
 
     <TextView
-        android:id="@+id/itemDate2"
+        android:id="@+id/itemDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="left"
         android:text="time"
-        android:textSize="14sp" />
+        android:textSize="18sp" />
 
 </LinearLayout>

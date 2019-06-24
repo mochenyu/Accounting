@@ -25,7 +25,8 @@
         android:layout_marginTop="74dp"
         android:gravity="right"
         android:text="¥"
-        android:textSize="36sp" />
+        android:textSize="36sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/expenses"
@@ -43,7 +44,8 @@
         android:layout_toRightOf="@+id/textView6"
         android:gravity="left"
         android:text="@string/all"
-        android:textSize="36sp" />
+        android:textSize="36sp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/inp1"
@@ -90,6 +92,7 @@
         android:layout_marginBottom="115dp"
         android:onClick="onClick"
         android:text="@string/btn1"
+        android:textColor="@color/design_default_color_primary"
         android:textSize="18sp" />
 
     <TextView
@@ -122,4 +125,39 @@
         android:text="@string/bz"
         android:textSize="24sp" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="460dp"
+        android:layout_marginBottom="5dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="right"
+            android:text="@string/total"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/total1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:text="@string/totalnum"
+            android:textAllCaps="false"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn3"
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:text="@string/cal"
+            android:textColor="@color/design_default_color_primary" />
+    </LinearLayout>
 </RelativeLayout>

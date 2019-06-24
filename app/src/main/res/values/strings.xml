@@ -9,4 +9,7 @@
     <string name="all" translatable="false">0.0</string>
     <string name="menu_expenses">expenses details</string>
     <string name="menu_income">income details</string>
+    <string name="cal">calculator</string>
+    <string name="total">total:¥</string>
+    <string name="totalnum">0.00</string>
 </resources>

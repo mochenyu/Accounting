@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class InManager {
@@ -55,26 +56,6 @@ public class InManager {
         db.close();
     }
 
-    public List<AccountInItem> listAll(){
-        List<AccountInItem> rateList = null;
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.query(TBNAME,null,null,null,null,null,null);
-        if (cursor!=null){
-            rateList = new ArrayList<AccountInItem>();
-            while (cursor.moveToNext()){
-                AccountInItem item = new AccountInItem();
-                item.setId(cursor.getInt(cursor.getColumnIndex("ID")));
-                item.setCurMark(cursor.getString(cursor.getColumnIndex("CURMARK")));
-                item.setCurIn(cursor.getString(cursor.getColumnIndex("CURIN")));
-                item.setCurDate(cursor.getString(cursor.getColumnIndex("CURDATE")));
-                rateList.add(item);
-            }
-            cursor.close();
-        }
-        db.close();
-        return rateList;
-    }
-
     public Float NUM() {
         Float r = 0.0f;
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -88,5 +69,24 @@ public class InManager {
         }
         db.close();
         return r;
+    }
+
+    public List<HashMap<String, String>> getDataAll() {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.query(TBNAME, null, null, null, null, null, null);
+        List<HashMap<String, String>> listItems = null;
+        if (cursor != null) {
+            listItems = new ArrayList<HashMap<String, String>>();
+            while (cursor.moveToNext()) {
+                HashMap<String, String> map = new HashMap<String, String>();
+                map.put("ItemMarks", cursor.getString(cursor.getColumnIndex("CURMARK")));
+                map.put("ItemIn", cursor.getString(cursor.getColumnIndex("CURIN")));
+                map.put("ItemDate", cursor.getString(cursor.getColumnIndex("CURDATE")));
+                listItems.add(map);
+            }
+            cursor.close();
+        }
+        db.close();
+        return listItems;
     }
 }
